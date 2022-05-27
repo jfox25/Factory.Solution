@@ -1,4 +1,4 @@
-# HairSalon System
+# Factory System
 
 By James Fox
 
