@@ -66,6 +66,12 @@ dotnet restore
 
 ```
 
+4. Run this command to update your database inside the Factory directive.
+
+```
+dotnet ef database update
+```
+
 ### To Run the Project
 
 1. Make sure you are in the Factory.Solution/Factory directive
