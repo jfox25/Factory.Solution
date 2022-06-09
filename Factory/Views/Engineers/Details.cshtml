@@ -6,7 +6,7 @@
 
 <h2>Engineer Details</h2>
 <hr />
-<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
+<h3>@Html.DisplayNameFor(model => model.Name): <span class="color">@Html.DisplayFor(model => model.Name)</span></h3>
 
 @if(@Model.JoinEntities.Count == 0)
 {
@@ -18,17 +18,21 @@ else
   <ul>
   @foreach(var join in Model.JoinEntities)
   {
-    <li>@join.Machine.Name</li>
+    <div class="delete-group">
+      <li>@join.Machine.Name</li>
     @using (Html.BeginForm("DeleteMachine", "Engineers"))
     {
       @Html.Hidden("joinId", @join.EngineerMachineId)
       @Html.Hidden("engineerId", Model.EngineerId)
-      <input type="submit" value="Delete"/>
+      <input class="delete-button" type="submit" value="X"/>
     }
+    </div>
   }
   </ul>
 }
-<p class="button">@Html.ActionLink("Add a Machine", "AddMachine", new {id = Model.EngineerId})</p>
-<p class="button">@Html.ActionLink("Edit Engineer", "Edit", new { id = Model.EngineerId })</p>
-<p class="button">@Html.ActionLink("Delete Engineer", "Delete", new { id = Model.EngineerId })</p>
+<div class="button-group">
+  <p class="button add">@Html.ActionLink("Add a Machine", "AddMachine", new {id = Model.EngineerId})</p>
+  <p class="button edit">@Html.ActionLink("Edit Engineer", "Edit", new { id = Model.EngineerId })</p>
+  <p class="button delete">@Html.ActionLink("Delete Engineer", "Delete", new { id = Model.EngineerId })</p>
+</div>
 <p class="button">@Html.ActionLink("Back to all Engineers", "Index")</p>
