@@ -12,7 +12,7 @@
 {
   @Html.HiddenFor(model => model.EngineerId)
 
-  @Html.LabelFor(model => model.Name)
+  @Html.LabelFor(model => model.Name, new {required="required"})
   @Html.EditorFor(model => model.Name)
 
   <input type="submit" value="Save" />

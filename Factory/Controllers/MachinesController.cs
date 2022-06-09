@@ -55,7 +55,8 @@ namespace Factory.Controllers
       [HttpPost]
       public ActionResult AddEngineer(Machine machine, int EngineerId)
       {
-        if (EngineerId != 0)
+        var engineerMachine = _db.EngineerMachine.FirstOrDefault(engineerMachine => engineerMachine.MachineId == machine.MachineId && engineerMachine.EngineerId == EngineerId);
+        if (EngineerId != 0 && engineerMachine == null)
         {
           _db.EngineerMachine.Add(new EngineerMachine() { EngineerId = EngineerId, MachineId = machine.MachineId });
           _db.SaveChanges();

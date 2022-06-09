@@ -44,6 +44,7 @@ namespace Factory.Controllers
       }
       public ActionResult AddMachine(int id)
       {
+
         var thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
         ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Name");
         return View(thisEngineer);
@@ -51,7 +52,8 @@ namespace Factory.Controllers
       [HttpPost]
       public ActionResult AddMachine(Engineer engineer, int MachineId)
       {
-        if (MachineId != 0)
+        var engineerMachine = _db.EngineerMachine.FirstOrDefault(engineerMachine => engineerMachine.MachineId == MachineId && engineerMachine.EngineerId == engineer.EngineerId);
+        if (MachineId != 0 && engineerMachine == null)
         {
           _db.EngineerMachine.Add(new EngineerMachine() { EngineerId = engineer.EngineerId, MachineId = MachineId });
           _db.SaveChanges();
